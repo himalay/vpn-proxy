@@ -3,6 +3,8 @@
 ovpn=$1
 name=vpn-proxy
 port=1080
+user=himalay
+pass=hsockspass
 
 if [[ ! $ovpn =~ ^.*\.ovpn$ ]]; then
     echo "ERROR: You must provide the location of *.ovpn file path"
@@ -18,7 +20,9 @@ if [[ ! -f $ovpn ]]; then
 fi
 
 if [[ "$(docker images -q $name 2>/dev/null)" == "" ]]; then
-    docker build -t $name .
+    docker build -t $name . \
+        --build-arg user=$user \
+        --build-arg pass=$pass
 fi
 
 exec docker run \

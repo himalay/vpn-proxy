@@ -1,5 +1,11 @@
 FROM alpine
 
+ARG user
+ARG pass
+
+ENV PROXY_USER $user
+ENV PROXY_PASS $pass
+
 COPY sockd.conf /etc/
 COPY sockd.sh sockd_down.sh /usr/local/bin/
 
@@ -10,6 +16,8 @@ RUN true \
     && true
 
 RUN chmod a+x /usr/local/bin/*.sh
+
+RUN adduser -S -H ${PROXY_USER} && echo "${PROXY_USER}:${PROXY_PASS}" | chpasswd
 
 ENTRYPOINT openvpn --config /etc/openvpn/ovpn.conf \
     --auth-retry interact \

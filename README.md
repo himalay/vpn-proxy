@@ -2,6 +2,8 @@
 
 OpenVPN client tied to a SOCKS proxy server for easier-app based  or even domain-name based routing.
 
+- Update `--build-arg` values (user/pass) in `start.sh` file
+
 ## Build and run
 
 `./start.sh path/to/MyOpenvpn.ovpn`
