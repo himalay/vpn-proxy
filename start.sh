@@ -20,7 +20,7 @@ if [[ ! -f $ovpn ]]; then
     exit 1
 fi
 
-if [[ "$(docker images -q $name 2>/dev/null)" == "" ]]; then
+if [[ "$(docker images -q $name 2>/dev/null)" == "" || $2 == "--build" ]]; then
     docker build -t $name . \
         --build-arg user=$user \
         --build-arg pass=$pass \
