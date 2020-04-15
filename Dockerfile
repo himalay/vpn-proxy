@@ -2,16 +2,18 @@ FROM alpine
 
 ARG user
 ARG pass
+ARG timezone
 
 ENV PROXY_USER $user
 ENV PROXY_PASS $pass
+ENV TZ $timezone
 
 COPY sockd.conf /etc/
 COPY sockd.sh sockd_down.sh /usr/local/bin/
 
 RUN true \
     && echo "@community http://dl-cdn.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories \
-    && apk add --update-cache dante-server@community openvpn bash openresolv openrc \
+    && apk add --update-cache dante-server@community openvpn bash openresolv openrc tzdata \
     && rm -rf /var/cache/apk/* \
     && true
 

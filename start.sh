@@ -5,6 +5,7 @@ name=vpn-proxy
 port=1080
 user=himalay
 pass=hsockspass
+timezone=Asia/Kathmandu
 
 if [[ ! $ovpn =~ ^.*\.ovpn$ ]]; then
     echo "ERROR: You must provide the location of *.ovpn file path"
@@ -22,7 +23,8 @@ fi
 if [[ "$(docker images -q $name 2>/dev/null)" == "" ]]; then
     docker build -t $name . \
         --build-arg user=$user \
-        --build-arg pass=$pass
+        --build-arg pass=$pass \
+        --build-arg timezone=$timezone
 fi
 
 exec docker run \
