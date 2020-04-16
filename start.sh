@@ -11,7 +11,7 @@ if [[ ! -f $ENV_FILE ]]; then
     exit 1
 fi
 
-if [[ ! $CONF_FILE =~ ^.*\.ovpn$ ]]; the
+if [[ ! $CONF_FILE =~ ^.*\.ovpn$ ]]; then
     echo -e "\e[1;31mError:\e[0;0m You must provide the location of *.ovpn file"
     echo "💡 ./start.sh /path/to/confFile.ovpn"
     exit 1
