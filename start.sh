@@ -6,18 +6,19 @@ PORT=1080
 ENV_FILE="$(readlink -f .env)"
 
 if [[ ! -f $ENV_FILE ]]; then
-    echo "ERROR: .env file does not exists in the path: $ENV_FILE"
+    echo -e "\e[1;31mError:\e[0;0m .env file does not exists in the path: $ENV_FILE"
+    echo "💡 Make a copy of .env.example and update the values"
     exit 1
 fi
 
-if [[ ! $CONF_FILE =~ ^.*\.ovpn$ ]]; then
-    echo "ERROR: You must provide the location of *.ovpn file"
-    echo "Example: ./start.sh /path/to/confFile.ovpn"
+if [[ ! $CONF_FILE =~ ^.*\.ovpn$ ]]; the
+    echo -e "\e[1;31mError:\e[0;0m You must provide the location of *.ovpn file"
+    echo "💡 ./start.sh /path/to/confFile.ovpn"
     exit 1
 fi
 
 if [[ ! -f $CONF_FILE ]]; then
-    echo "ERROR: File does not exists in the path: $CONF_FILE"
+    echo -e "\e[1;31mError:\e[0;0m File does not exists in the path: $CONF_FILE"
     exit 1
 fi
 
