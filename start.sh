@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 CONF_FILE="$(readlink -f $1)"
 NAME=vpn-proxy
